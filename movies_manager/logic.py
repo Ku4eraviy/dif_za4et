@@ -1,6 +1,6 @@
 import json
 import os
-from typing import List
+from typing import List,Dict
 
 
 def load_movies(path: str) -> list[dict]:
@@ -28,12 +28,21 @@ def save_movies(path: str, movies: list[dict]) -> None:
 
 def add_movie(movies: list[dict], title: str, year: int) -> list[dict]:
     """Добавление нового фильма в список."""
-    title = input("Введите название фильма: ")
-    try:
-        movies.append({"title": title, "year": year})
-        return movies
-    except ValueError:
-        return []
+    if not movies:
+        new_id = 1
+    else:
+        new_id = max(movies['id'] for movie in movies) + 1
+
+    new_movie = {
+        "id": new_id,
+        "title": title,
+        "year": year,
+        "watched": False
+    }
+
+    updated_movies = movies.copy()
+    updated_movies.append(new_movie)
+    return updated_movies
 
 
 def mark_watched(movies: list[dict], movie_id: int) -> list[dict]:
