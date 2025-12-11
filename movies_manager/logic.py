@@ -47,10 +47,15 @@ def add_movie(movies: list[dict], title: str, year: int) -> list[dict]:
 
 def mark_watched(movies: list[dict], movie_id: int) -> list[dict]:
     """Отметить фильм как просмотренный."""
-    pass
+    for movie in movies:
+        if movie.get('id') == movie_id:
+            movie['watched'] = True
+            break
+    return movies
 
 
 def find_by_year(movies: list[dict], year: int) -> list[dict]:
     """Поиск всех фильмов указанного года."""
-    pass
+    result = [movie for movie in movies if movie.get['year'] == year]
+    return result
 
