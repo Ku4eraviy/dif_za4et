@@ -16,6 +16,7 @@ def main():
         choice = input("Выберите пункт: ")
 
         if choice == "1":
+
             pass  # TODO: вывод списка фильмов
 
         elif choice == "2":
