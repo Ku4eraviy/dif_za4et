@@ -28,5 +28,11 @@
     "title": "The Dark Knight",
     "year": 2008,
     "watched": false
+  },
+  {
+    "id": 6,
+    "title": "Пепелище",
+    "year": 2015,
+    "watched": false
   }
 ]

@@ -2,10 +2,13 @@ import json
 import os
 from typing import List, Dict
 
+
 def load_movies(path: str) -> List[Dict]:
     """Загрузка списка фильмов из JSON-файла."""
-    full_path = os.path.join(path, "movies.json")
+    full_path = os.path.join(path,)
+
     if not os.path.exists(full_path):
+        print(f"Файл {full_path} не найден.")
         return []
 
     try:
@@ -14,14 +17,16 @@ def load_movies(path: str) -> List[Dict]:
             if isinstance(data, list):
                 return data
             else:
+                print("Некорректный формат данных в файле.")
                 return []
-    except Exception:
+    except Exception as e:
+        print(f"Произошла ошибка при загрузке файла: {e}")
         return []
 
 def save_movies(path: str, movies: List[Dict]) -> None:
     """Сохранение списка фильмов в JSON-файл."""
     try:
-        with open(os.path.join(path, "movies.json"), "w", encoding="utf-8") as file:
+        with open(os.path.join(path), "w", encoding="utf-8") as file:
             json.dump(movies, file, ensure_ascii=False, indent=2)
     except Exception as e:
         print(f"Произошла ошибка при сохранении файлов: {e}")
@@ -56,3 +61,12 @@ def find_by_year(movies: List[Dict], year: int) -> List[Dict]:
     """Поиск всех фильмов указанного года."""
     result = [movie for movie in movies if movie.get("year") == year]
     return result
+
+def display_movies(movies):
+    """Вывод списка фильмов"""
+    if len(movies) > 0:
+        for movie in movies:
+            watched_status = 'Просмотрен' if movie['watched'] else 'Не просмотрен'
+            print(f"{movie['id']}. Название: {movie['title']} | Год выпуска: {movie['year']} | Статус: {watched_status}")
+    else:
+        print("Нет фильмов в каталоге.")
