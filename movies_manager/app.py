@@ -30,7 +30,6 @@ def main():
                 print(f"Фильм '{title}' успешно добавлен.")
             except ValueError:
                 print("Ошибка: неверный формат года. Попробуйте снова.")
-            # TODO: ввод данных и вызов add_movie()
 
         elif choice == "3":
             movie_id = input("Введите ID фильма, который хотите отметить как просмотренный: ")
@@ -40,7 +39,6 @@ def main():
                 print(f"Фильм с ID {movie_id} отмечен как просмотренный.")
             except ValueError:
                 print("Ошибка: введите числовой ID фильма.")
-            # TODO: ввод id и вызов mark_watched()
 
         elif choice == "4":
             search_year = input("Введите год для поиска фильмов: ")
@@ -54,7 +52,6 @@ def main():
                     print(f"Фильмов, выпущенных в {search_year}, не найдено.")
             except ValueError:
                 print("Ошибка: неверный формат года. Используйте цифры.")
-            # TODO: ввод года и вывод результатов
 
         elif choice == "0":
             save_movies(DATA_FILE, movies)
